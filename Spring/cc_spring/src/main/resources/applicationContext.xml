@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="userDao" class="cc.dao.impl.UserDaoImpl" >
+        <property name="username" value="chenchen"/>
+        <property name="password" value="chenchen111"/>
+        <property name="stringList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="1" value-ref="user1"/>
+                <entry key="2" value-ref="user2"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="111">aaa</prop>
+                <prop key="222">bbb</prop>
+                <prop key="333">ccc</prop>
+            </props>
+        </property>
+    </bean>
+<!--    <bean id="userService" class="cc.service.impl.UserServiceImpl">-->
+<!--        <property name="userDao" ref="userDao"/>-->
+<!--    </bean>-->
+    <bean id="userService" class="cc.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="user1" class="cc.domain.User">
+        <property name="name" value="cc"/>
+        <property name="age" value="18"/>
+    </bean>
+    <bean id="user2" class="cc.domain.User">
+        <property name="name" value="ss"/>
+        <property name="age" value="20"/>
+    </bean>
+</beans>
